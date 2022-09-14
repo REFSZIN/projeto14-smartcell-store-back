@@ -13,4 +13,4 @@ dotenv.config();
 app.use();
 app.use();
 
-app.listen(process.env.PORTA, () => { console.log(chalk.green.bold(`Rodando ${process.env.NOMEE} Lisu na Porta: ${process.env.PORTA}`))});
+app.listen(process.env.PORT, () => { console.log(chalk.green.bold(`Rodando ${process.env.NOMEE} Lisu na Porta: ${process.env.PORT}`))});
