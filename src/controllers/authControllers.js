@@ -41,7 +41,7 @@ const singUp = async (req, res) => {
   };
 }
 
-const singIn = async (req, res) => {
+const singIn = async (req, res) => {dwq
   const { email, password } = req.body;
   const userLogin = { email, password };
 
