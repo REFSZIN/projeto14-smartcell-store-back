@@ -1,4 +1,4 @@
-const STATUS_CODE : Object.freeze({
+const STATUS_CODE = Object.freeze({
   ERRORBADREQUEST : 400,
   ERRORCONFLICT : 409,
   ERROREXPECTATIONFAILED : 417,
