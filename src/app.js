@@ -10,9 +10,7 @@ const app = express();
 app.use(cors());
 app.use(json());
 
-console.log(process.env.MONGO_URI)
-
 app.use(authRouters);
 app.use(storeRouters);
 
-app.listen(4000, () => { console.log(chalk.green.bold(`Listening ${process.env.NOMEE} on Port: 4000`))});
+app.listen(process.env.PORT, () => { console.log(chalk.green.bold(`Rodando ${process.env.NOMEE} Lisu on Port: ${process.env.PORT}`))});

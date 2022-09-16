@@ -1,13 +1,13 @@
 import express from 'express';
-//import { myCart, postInMyCart, deleteInMyCart, postInCheckout, checkouts } from '../controllers/authController.js';
-import {listProducts, sendToCart} from "../controllers/storeControllers.js"
+import {listProducts,sendToCart,listCart,checkouts,postCheckout,deleteInMyCart} from "../controllers/storeControllers.js"
+import { authMiddleware } from '../middlewares/authMiddleware.js';
 const router = express.Router();
 
 router.get('/products', listProducts);
 router.post('/carts', sendToCart);
-/*router.get('/mycart', myCart );
+router.get('/mycart', listCart );
 router.delete('/mycart:ID', deleteInMyCart );
-router.post('/checkout', postInCheckout );
-router.get('/checkout', checkouts);*/
+router.post('/checkout', authMiddleware, postCheckout );
+router.get('/checkout', authMiddleware, checkouts);
 
 export default router;

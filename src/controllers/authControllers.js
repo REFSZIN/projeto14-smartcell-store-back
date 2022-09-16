@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import mongo from '../db/db.js';
 import { v4 as uuid } from 'uuid';
 import { STATUS_CODE } from '../enums/statusCode.js';
+import { COLLECTIONS } from '../enums/collections.js';
 import { schemaCadrasto,schemaLogin } from '../schemas/authSchemas.js';
 
 let db = await mongo();
@@ -28,12 +29,12 @@ const signUp = async (req, res) => {
   };
   const passwordHash = bcrypt.hashSync(newUser.password, 10);
   try {
-    const verificaUser = await db.collection('users').findOne({email: email})
+    const verificaUser = await db.collection(COLLECTIONS.USERS).findOne({email: email})
     if(verificaUser) {
       return res.status(STATUS_CODE.ERRORCONFLICT).send(
         `Email existente : ${email}`)
     };
-    await db.collection("users").insertOne(
+    await db.collection(COLLECTIONS.USERS).insertOne(
       {name, email, password: passwordHash}
     );
     res.status(STATUS_CODE.SUCCESSCREATED).send(`Criado com sucesso`);
@@ -61,7 +62,7 @@ const signIn = async (req, res) => {
   };
 
   try {
-    const user = await db.collection('users').findOne({email});
+    const user = await db.collection(COLLECTIONS.USERS).findOne({email});
     if(user === undefined || null){
       res.status(STATUS_CODE.ERRORUNPROCESSABLEENTITY).send(
         `Usuário não encontrado (email ou senha incorretos)`
@@ -71,7 +72,7 @@ const signIn = async (req, res) => {
 
     if(user && passwordIsValid) {
         const token = uuid();
-        await db.collection("sessions").insertOne({
+        await db.collection(COLLECTIONS.SESSIONS).insertOne({
           userId: user._id,
           token
         })
