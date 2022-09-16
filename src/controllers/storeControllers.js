@@ -14,16 +14,20 @@ async function listProducts(req, res){
     };
 };
 
-async function myCart(req, res){
-    
-
+async function sendToCart(req, res){
+    const {product, user, price} = req.body;
 
     try {
-        
+        const cart = await db.collection('carts').insertOne({
+            price,
+            user,
+            product
+        });
+        return res.sendStatus(200);
     } catch (error) {
-        
+        console.error(error);
+        return res.sendStatus(STATUS_CODE.SERVERERRORINTERNAL);
     }
 }
 
-
-export {listProducts};
+export {listProducts, sendToCart};

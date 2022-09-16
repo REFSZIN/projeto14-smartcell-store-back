@@ -8,9 +8,14 @@ import { schemaCadrasto,schemaLogin } from '../schemas/authSchemas.js';
 let db = await mongo();
 
 const signUp = async (req, res) => {
-  const { name, email, password, password_confirmation } = req.body;
+  const { name, email, password, confirmPassword } = req.body;
 
-  const newUser = {name,email,password,password_confirmation};
+  const newUser = {
+    name,
+    email,
+    password,
+    confirmPassword
+  };
 
   const valid = schemaCadrasto.validate(newUser, {abortEarly: false});
 
