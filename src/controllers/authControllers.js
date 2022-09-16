@@ -7,10 +7,15 @@ import { schemaCadrasto,schemaLogin } from '../schemas/authSchemas.js';
 
 let db = await mongo();
 
-const singUp = async (req, res) => {
-  const { name, email, password, password_confirmation } = req.body;
+const signUp = async (req, res) => {
+  const { name, email, password, confirmPassword } = req.body;
 
-  const newUser = {name,email,password,password_confirmation};
+  const newUser = {
+    name,
+    email,
+    password,
+    confirmPassword
+  };
 
   const valid = schemaCadrasto.validate(newUser, {abortEarly: false});
 
@@ -41,7 +46,7 @@ const singUp = async (req, res) => {
   };
 }
 
-const singIn = async (req, res) => {
+const signIn = async (req, res) => {
   const { email, password } = req.body;
   const userLogin = { email, password };
 
@@ -87,4 +92,4 @@ const singIn = async (req, res) => {
   };
 }
 
-export {singIn, singUp};
+export {signIn, signUp};
