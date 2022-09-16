@@ -1,7 +1,4 @@
-# * Projetâ0 - API SMART 📱 STORE *
- Back-end !🙂
-
-# Bibliotecas
+# Librariess
 
 - [express](https://www.npmjs.com/package/express)
 - [cors](https://www.npmjs.com/package/cors)
@@ -16,7 +13,144 @@
 - [uuid](https://www.npmjs.com/package/uuid)
 - [nodemon](https://www.npmjs.com/package/nodemon)
 
+<h1 align="center">
+  Smart Cell Store
+</h1>
+<div align="center">
 
+  <h3>Built With</h3>
+
+  <img src="https://img.shields.io/badge/MongoDB-316192?style=for-the-badge&logo=mongodb&logoColor=white" height="30px"/>
+  <img src="https://img.shields.io/badge/JavaScript-FFFF00?style=for-the-badge&logo=javaScript&logoColor=black" height="30px"/>
+  <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" height="30px"/>  
+  <img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge&logo=express.js&logoColor=white" height="30px"/>
+  
+  <!-- Badges source: https://dev.to/envoy_/150-badges-for-github-pnk -->
+</div>
+
+<br/>
+
+# Description
+
+SmartCellStore is a back-end application, an REST API.
+
+</br>
+
+## Features
+
+-   User sign-up and sign-in
+-   Create cart.
+-   Order Checkout by Cart User id.
+-   View products.
+
+</br>
+
+## API Reference
+
+### User Sign Up
+
+```
+https://projeto14-smartcell-store-front.vercel.app/
+POST /auth/sign-up
+```
+
+#### Request:
+
+| Body            | Type     | Description                     |
+| :-------------- | :------- | :------------------------------ |
+| `name`          | `string` | **Required**. user name         |
+| `email`         | `string` | **Required**. user email        |
+| `password`      | `string` | **Required**. user password     |
+| `confirmPass`   | `string` | **Required**. user confirmpass  |
+
+#### Response:
+
+```json
+{
+  "message": "User successfully registered!"
+}
+```
+`confirmPass must match password`
+
+#
+
+### User Sign In
+
+```
+https://projeto14-smartcell-store-front.vercel.app/
+POST /auth/sign-ip
+```
+
+#### Request:
+
+| Body            | Type     | Description                     |
+| :-------------- | :------- | :------------------------------ |
+| `email`         | `string` | **Required**. user email        |
+| `password`      | `string` | **Required**. user password     |
+
+#### Response:
+
+```json
+{
+  "token": "bcript authorization token"
+}
+```
+
+#
+### User Sign In
+
+```
+https://projeto14-smartcell-store-front.vercel.app/
+POST /products
+```
+
+#### Request:
+
+| Body            | Type     | Description                     |
+| :-------------- | :------- | :------------------------------ |
+
+#### Response:
+
+```json
+{
+  [...Products]
+}
+```
+
+#
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+`DATABASE_URL = postgres://UserName:Password@Hostname:5432/DatabaseName`
+`PORT = number #recommended:5000` 
+</br>
+
+## Run Locally
+Clone the project
+```bash
+  git clone 
+```
+Go to the project directory
+```bash
+  cd projet
+```
+Install dependencies
+```bash
+  npm install
+```
+Start the server
+```bash
+  npm run dev
+```
+Run tests
+```bash
+  npm test
+```
+
+## Acknowledgements
+-   [Awesome Badges](https://github.com/Envoy-VC/awesome-badges)
+</br>
 
 <!-- 
 // build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
