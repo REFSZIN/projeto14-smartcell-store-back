@@ -1,18 +1,3 @@
-# Librariess
-
-- [express](https://www.npmjs.com/package/express)
-- [cors](https://www.npmjs.com/package/cors)
-- [jwt-simple](https://www.npmjs.com/package/jwt-simple)
-- [chalk](https://www.npmjs.com/package/chalk)
-- [dotenv](https://www.npmjs.com/package/dotenv)
-- [dayjs](https://www.npmjs.com/package/dayjs)
-- [mongodb](https://www.npmjs.com/package/mongodb)
-- [joi](https://www.npmjs.com/package/joi)
-- [jwt-simple](https://www.npmjs.com/package/jwt-simple)
-- [bcrypt](https://www.npmjs.com/package/bcrypt)
-- [uuid](https://www.npmjs.com/package/uuid)
-- [nodemon](https://www.npmjs.com/package/nodemon)
-
 <h1 align="center">
   Smart Cell Store
 </h1>
@@ -27,6 +12,20 @@
   
   <!-- Badges source: https://dev.to/envoy_/150-badges-for-github-pnk -->
 </div>
+<h2>Librariess<h2>
+
+- [express](https://www.npmjs.com/package/express)
+- [cors](https://www.npmjs.com/package/cors)
+- [jwt-simple](https://www.npmjs.com/package/jwt-simple)
+- [chalk](https://www.npmjs.com/package/chalk)
+- [dotenv](https://www.npmjs.com/package/dotenv)
+- [dayjs](https://www.npmjs.com/package/dayjs)
+- [mongodb](https://www.npmjs.com/package/mongodb)
+- [joi](https://www.npmjs.com/package/joi)
+- [jwt-simple](https://www.npmjs.com/package/jwt-simple)
+- [bcrypt](https://www.npmjs.com/package/bcrypt)
+- [uuid](https://www.npmjs.com/package/uuid)
+- [nodemon](https://www.npmjs.com/package/nodemon)
 
 <br/>
 
