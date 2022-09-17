@@ -50,7 +50,6 @@ const signUp = async (req, res) => {
 const signIn = async (req, res) => {
   const { email, password } = req.body;
   const userLogin = { email, password };
-
   const valid = schemaLogin.validate(userLogin, {abortEarly: false});
 
   if(valid.errorMessage){

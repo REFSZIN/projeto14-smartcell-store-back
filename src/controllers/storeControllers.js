@@ -30,7 +30,7 @@ async function sendToCart(req, res){
 async function listCart(req, res){
     const { user } = req.body;
     try {
-        const myCart = await db.collection(COLLECTIONS.CARTS).find({user: user.email}).toArray();
+        const myCart = await db.collection(COLLECTIONS.CARTS).find({user: user}).toArray();
         return res.send(myCart);
     } catch (error) {
         console.error(error);
