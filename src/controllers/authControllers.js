@@ -75,7 +75,9 @@ const signIn = async (req, res) => {
           userId: user._id,
           token
         })
-        const response = {token, name: user.name , email: user.email, password};
+        const legthCarts = await db.collection(COLLECTIONS.CARTS).find({email:email}).toArray().legth;
+        
+        const response = {token, name: user.name , email: user.email, password, legthCarts};
 
         res.status(STATUS_CODE.SUCCESSCREATED).send(response);
         return
@@ -92,4 +94,4 @@ const signIn = async (req, res) => {
   };
 }
 
-export {signIn, signUp};
+export {signIn,signUp};

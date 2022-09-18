@@ -1,16 +1,19 @@
 import joi from 'joi';
 
 const schemaCart = joi.object({
-  name: joi.string().min(3).required(),
+  product: joi.object().required(),
   email: joi.string().email().required(),
-  password: joi.string().min(3).max(25).required(),
-  password_confirmation: joi.any().valid(joi.ref('password')).required()
-});
-const schemaCheckout = joi.object({
-  name: joi.string().min(3).required(),
-  email: joi.string().email().required(),
-  password: joi.string().min(3).max(25).required(),
-  password_confirmation: joi.any().valid(joi.ref('password')).required()
 });
 
-export {schemaCadrasto};
+const schemaCheckout = joi.object({
+  email: joi.string().email().required(),
+  cep: joi.string().email().required(),
+  number: joi.number().required(),
+  state: joi.string().required(),
+  district: joi.string().required(),
+  city: joi.string().required(),
+  payMethod: joi.string().required(),
+  request: joi.object().required(),
+});
+
+export {schemaCheckout,schemaCart};
