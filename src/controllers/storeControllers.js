@@ -1,6 +1,7 @@
 import mongo from '../db/db.js';
 import { STATUS_CODE } from '../enums/statusCode.js';
 import { COLLECTIONS } from '../enums/collections.js';
+import {ObjectId} from "mongodb";
 import { schemaCheckout,schemaCart } from '../schemas/storeSchemas.js';
 let db = await mongo();
 
@@ -53,11 +54,12 @@ const deleteInMyCart = async (req, res) =>{
   const { ID } = req.params;
   try {
       const message = await db.collection(COLLECTIONS.CARTS).findOne({_id: ObjectId(`${ID}`)});
-  if(!message){
+      console.log(message)
+    if(!message){
       return res.sendStatus(STATUS_CODE.ERRORNOTFOUND);
-  }
-      await db.collection(COLLECTIONS.CARTS).deleteOne({_id: ObjectId(`${ID}`)});
-      res.sendStatus(STATUS_CODE.SUCCESSOK);
+    }
+    await db.collection(COLLECTIONS.CARTS).deleteOne({_id: ObjectId(`${ID}`)});
+    res.sendStatus(STATUS_CODE.SUCCESSOK);
   } catch(e) {
       res.status(STATUS_CODE.SERVERERRORINTERNAL).send({errorMessage: `Não foi possível deletar! Causa: ${e}`});
   }
@@ -78,8 +80,31 @@ const checkouts = async (req, res) =>{
 
 const postCheckout = async (req, res) =>{
   const { user } = res.locals;
-  const request = req.body;
-  const valid = schemaCheckout.validate(request, {abortEarly: false});
+
+  const{
+    email,
+    cep,
+    number,
+    state,
+    district,
+    city,
+    payMethod,
+    request,
+    price} = req.body;
+
+  const pedido ={   
+    email,
+    cep,
+    number,
+    state,
+    district,
+    city,
+    payMethod,
+    request,
+    price
+  };
+
+  const valid = schemaCheckout.validate(pedido, {abortEarly: false});
 
   if(valid.errorMessage){
     const erros = validation.error.details.map((err) => err.message);
@@ -88,14 +113,15 @@ const postCheckout = async (req, res) =>{
       ); 
     return
   };
+
   try {
-      const finalcart = await db.collection(COLLECTIONS.CARTS).find({email: user.email});
+      const finalcart = await db.collection(COLLECTIONS.CARTS).find({email: email});
   
   if(!finalcart){
       return res.sendStatus(STATUS_CODE.ERRORNOTFOUND);
   }
-      await db.collection(COLLECTIONS.CHECKOUTS).insertOne(request);
-      await db.collection(COLLECTIONS.CARTS).deleteMany({email: user.email});
+      await db.collection(COLLECTIONS.CHECKOUTS).insertOne({pedido});
+      await db.collection(COLLECTIONS.CARTS).deleteMany({email: email});
       res.sendStatus(STATUS_CODE.SUCCESSOK);
   } catch(e) {
       res.status(STATUS_CODE.SERVERERRORINTERNAL).send({errorMessage: `Não foi possível fazer Checkout! Causa: ${e}`});
