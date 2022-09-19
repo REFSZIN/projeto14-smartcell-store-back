@@ -54,7 +54,6 @@ const deleteInMyCart = async (req, res) =>{
   const { ID } = req.params;
   try {
       const message = await db.collection(COLLECTIONS.CARTS).findOne({_id: ObjectId(`${ID}`)});
-      console.log(message)
     if(!message){
       return res.sendStatus(STATUS_CODE.ERRORNOTFOUND);
     }
