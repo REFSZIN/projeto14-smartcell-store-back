@@ -16,7 +16,7 @@ const listProducts = async (req, res) =>{
 
 const sendToCart = async (req, res) =>{
   const {product, email } = req.body;
-  const cart = {product,email}
+  const cart = {product,email};
   const valid = schemaCart.validate(cart, {abortEarly: false});
 
   if(valid.errorMessage){
@@ -29,8 +29,7 @@ const sendToCart = async (req, res) =>{
 
   try {
       await db.collection(COLLECTIONS.CARTS).insertOne({
-          email,
-          product
+        product,email
       });
       return res.sendStatus(200);
   } catch (error) {
@@ -42,7 +41,7 @@ const sendToCart = async (req, res) =>{
 const listCart = async (req, res) =>{
   const { email } = req.body;
   try {
-      const myCart = await db.collection(COLLECTIONS.CARTS).find({email}).toArray();
+      const myCart = await db.collection(COLLECTIONS.CARTS).find(email).toArray();
       return res.send(myCart);
   } catch (error) {
       console.error(error);
